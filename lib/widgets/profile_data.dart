@@ -1,13 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:portfolio/util/config.dart';
 import 'package:portfolio/util/consts.dart';
+import 'package:portfolio/widgets/fade_side.dart';
 import 'package:portfolio/widgets/mouse_cursor.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
+import 'package:portfolio/widgets/send_up.dart';
 import 'dart:html' as html;
 
+import 'package:portfolio/widgets/type_write.dart';
 
-class ProfileData extends StatelessWidget {
+
+class ProfileData extends StatefulWidget {
+
+  @override
+  _ProfileDataState createState() => _ProfileDataState();
+}
+
+class _ProfileDataState extends State<ProfileData>{
+
+
   final List social = [
     {
       "icon": FontAwesome.github,
@@ -35,8 +49,10 @@ class ProfileData extends StatelessWidget {
     }
   ];
 
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: ResponsiveWidget.isSmallScreen(context)
           ? MediaQuery.of(context).size.height * 0.5
@@ -58,26 +74,28 @@ class ProfileData extends StatelessWidget {
                     : MediaQuery.of(context).size.height/4,
               ),
 
-              Text(
-                "${user.nickname}".toUpperCase(),
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 45,
+              FadeSide(
+                delay: 1,
+                child: Text(
+                  "${user.nickname}".toUpperCase(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 45,
+                  ),
                 ),
               ),
 
               SizedBox(height: 60,),
 
-              Text(
-                "Hi, my name is ${user.name}",
-                textScaleFactor: 1.3,
-              ),
 
-              SizedBox(height: 20,),
-
-              Text(
-                "I am a Software developer. I mostly focus on Mobile development with Flutter but i am also proficient with Node.js for Backend developement.",
+              TypeWrite(
+                word: "Hi, my name is ${user.name}"
+                    "\n\n"
+                    "I am a Software developer. I mostly focus on Mobile "
+                    "development with Flutter but i am also proficient "
+                    "with Node.js for Backend developement.",
                 textScaleFactor: 1.3,
+                seconds: 6,
               ),
 
               SizedBox(
@@ -90,16 +108,19 @@ class ProfileData extends StatelessWidget {
                   children: Constants.map(
                     social,
                         (index, item){
-                      return Padding(
-                        padding: EdgeInsets.only(right: 5),
-                        child: MouseCursor(
-                          child: GestureDetector(
-                            onTap: (){
-                              html.window.open(item['link'], "JideGuru");
-                            },
-                            child: Icon(
-                              item['icon'],
-                              size: 20,
+                      return FadeUp(
+                        delay: index+20,
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 5),
+                          child: MouseCursor(
+                            child: GestureDetector(
+                              onTap: (){
+                                html.window.open(item['link'], "JideGuru");
+                              },
+                              child: Icon(
+                                item['icon'],
+                                size: 20,
+                              ),
                             ),
                           ),
                         ),

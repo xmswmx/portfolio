@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/util/consts.dart';
+import 'package:portfolio/widgets/mouse_cursor.dart';
+import 'package:portfolio/widgets/myDrawer.dart';
 import 'package:portfolio/widgets/profile_data.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
@@ -22,32 +24,52 @@ class Home extends StatelessWidget {
     ),
   );
 
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body: ResponsiveWidget(
-        largeScreen: Row(
-          children: <Widget>[ProfileData(), profileImage(context)],
-        ),
-        smallScreen: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              SizedBox(
-                height: 80,
+      key: _scaffoldKey,
+      drawer: MyDrawer(0),
+      body: Stack(
+        children: <Widget>[
+          ResponsiveWidget(
+            largeScreen: Row(
+              children: <Widget>[ProfileData(), profileImage(context)],
+            ),
+            smallScreen: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  SizedBox(
+                    height: 80,
+                  ),
+                  profileImage(context),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  ProfileData(),
+                ],
               ),
-              profileImage(context),
-              SizedBox(
-                height: 40,
-              ),
-              ProfileData(),
-            ],
+            ),
           ),
-        ),
+
+          Positioned(
+            top: 20,
+            left: 10,
+            child: MouseCursor(
+              child: IconButton(
+                onPressed: ()=>_scaffoldKey.currentState.openDrawer(),
+                icon: Icon(
+                  Icons.menu,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:portfolio/screens/home.dart';
 import 'package:portfolio/util/consts.dart';
 import 'package:portfolio/widgets/myAppBar.dart';
 import 'package:portfolio/widgets/mouse_cursor.dart';
+import 'package:portfolio/widgets/myDrawer.dart';
 import 'package:portfolio/widgets/responsive_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,47 +16,14 @@ class _MainScreenState extends State<MainScreen> {
 
   PageController _pageController;
   int _page = 0;
-  List tabs = [
-    "Home",
-    "My Work",
-    "Services",
-    "Let's talk"
-  ];
 
-  List<Widget> navButtons(){
-    return Constants.map(
-      tabs,
-          (index, item){
-        bool pressed = _page == index;
-        return MouseCursor(
-          child: ListTile(
-            title: Text(
-              "$item",
-              style: TextStyle(
-                fontWeight: pressed
-                    ? FontWeight.w900
-                    : FontWeight.normal,
-                fontSize: 16,
-              ),
-            ),
-            onTap: ()=>navigationTapped(index),
-          ),
-        );
-      },
-    );
-  }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: Drawer(
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          children: navButtons(),
-        ),
-      ),
+
 
       body: Stack(
         children: <Widget>[
