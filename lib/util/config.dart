@@ -1,4 +1,6 @@
-{
+import 'package:portfolio/podo/user.dart';
+
+User user = User.fromJson({
   "name": "Festus Babajide Olusegun",
   "nickname": "JideGuru",
   "position": "Fullstack Developer",
@@ -11,4 +13,4 @@
     "telegram": "http://t.me/jideguru",
     "twitter": "http://twitter.com/iamjideguru"
   }
-}
+});

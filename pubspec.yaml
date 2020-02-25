@@ -20,7 +20,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  gradient_text: ^1.0.2
   flutter_icons: ^1.0.0+1
 
 dev_dependencies:
@@ -36,6 +35,9 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Crete
+    - family: Noto
       fonts:
-        - asset: assets/fonts/CreteRound-Regular.ttf
+        - asset: assets/fonts/NotoSerif-Regular.ttf
+        - asset: assets/fonts/NotoSerif-Italic.ttf
+        - asset: assets/fonts/NotoSerif-Bold.ttf
+        - asset: assets/fonts/NotoSerif-BoldItalic.ttf

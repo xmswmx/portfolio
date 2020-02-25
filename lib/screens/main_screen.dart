@@ -11,6 +11,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   PageController _pageController;
   int _page = 0;
   List tabs = [
@@ -26,43 +28,17 @@ class _MainScreenState extends State<MainScreen> {
           (index, item){
         bool pressed = _page == index;
         return MouseCursor(
-          child: FlatButton(
-            onPressed: ()=>navigationTapped(index),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  "$item",
-                  style: TextStyle(
-                    fontWeight: pressed
-                        ? FontWeight.w900
-                        : FontWeight.normal,
-                    fontSize: 16,
-                  ),
-                ),
-
-                SizedBox(height: 3,),
-
-                pressed
-                    ? Container(
-                  height: 4,
-                  width: 20,
-                  decoration: BoxDecoration(
-//                    borderRadius: BorderRadius.all(
-//                      Radius.circular(5),
-//                    ),
-                    gradient: LinearGradient(
-                      colors: [
-                        Theme.of(context).accentColor,
-                        Constants.blueAccent,
-                      ],
-                    ),
-                  ),
-                ):SizedBox(),
-              ],
+          child: ListTile(
+            title: Text(
+              "$item",
+              style: TextStyle(
+                fontWeight: pressed
+                    ? FontWeight.w900
+                    : FontWeight.normal,
+                fontSize: 16,
+              ),
             ),
+            onTap: ()=>navigationTapped(index),
           ),
         );
       },
@@ -72,37 +48,49 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      largeScreen: Scaffold(
-        drawer: ResponsiveWidget.isSmallScreen(context)
-            ? Drawer(
-          child: ListView(
-            padding: const EdgeInsets.all(20),
-            children: navButtons(),
-          ),
-        )
-            : null,
-        appBar: ResponsiveWidget.isSmallScreen(context)
-            ? AppBar()
-            : MyAppBar(navButtons()),
-
-        body: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          controller: _pageController,
-          onPageChanged: onPageChanged,
-          children: <Widget>[
-            Home(),
-            Center(child: Text("1")),
-            Center(child: Text("2")),
-            Center(child: Text("4"))
-          ],
+    return Scaffold(
+      key: _scaffoldKey,
+      drawer: Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: navButtons(),
         ),
+      ),
+
+      body: Stack(
+        children: <Widget>[
+          PageView(
+            physics: NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            onPageChanged: onPageChanged,
+            children: <Widget>[
+              Home(),
+              Center(child: Text("1")),
+              Center(child: Text("2")),
+              Center(child: Text("4"))
+            ],
+          ),
+
+          Positioned(
+            top: 20,
+            left: 10,
+            child: MouseCursor(
+              child: IconButton(
+                onPressed: ()=>_scaffoldKey.currentState.openDrawer(),
+                icon: Icon(
+                  Icons.menu,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
   void navigationTapped(int page) {
     _pageController.jumpToPage(page);
+    Navigator.pop(context);
   }
 
   @override

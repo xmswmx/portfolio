@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/widgets/mouse_cursor.dart';
 
 class Constants{
 
@@ -8,15 +9,15 @@ class Constants{
 
   //Colors for theme
   static Color lightPrimary = Colors.white;
-  static Color darkPrimary = Colors.black;
+  static Color darkPrimary = Color(0xff191b1b);
   static Color lightAccent = Color(0xffee2552);
   static Color darkAccent = Color(0xffee2552);
   static Color lightBG = Colors.white;
-  static Color darkBG = Colors.black;
+  static Color darkBG = Color(0xff191b1b);
   static Color blueAccent = Color(0xff22a6d8);
 
   static ThemeData lightTheme = ThemeData(
-    fontFamily: "Crete",
+//    fontFamily: "Noto",
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     accentColor:  lightAccent,
@@ -35,7 +36,7 @@ class Constants{
   );
 
   static ThemeData darkTheme = ThemeData(
-    fontFamily: "Crete",
+//    fontFamily: "Noto",
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,
