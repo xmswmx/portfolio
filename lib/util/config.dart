@@ -26,4 +26,21 @@ List works = [
         "-457b-11ea-99cf-7c9f7dded0e7",
     "link": "https://github.com/JideGuru/FileX",
   },
+  {
+    "name": "FlutterEbookApp",
+    "info": "This project was made mostly because i wanted to explore using XML "
+        "based APIs in Flutter and also to know how file downloads work. "
+        "\n\nFile Download is handle with Dio Plugin and the Feedbooks API "
+        "was uses in the making of this app",
+    "img": "https://github.com/JideGuru/FlutterEbookApp/raw/master/ss/mockup.png",
+    "link": "https://github.com/JideGuru/FlutterEbookApp",
+  },
+  {
+    "name": "FlutterSocialAppUIKit",
+    "info": "One of my First projects in Flutter, i made it while practicing "
+        "to make beautiful minimalist UIs with flutter. "
+        "\n\nDesign was gotten from uplabs and recreated with Flutter",
+    "img": "https://github.com/JideGuru/FlutterSocialAppUIKit/raw/master/ss/1.png",
+    "link": "https://github.com/JideGuru/FlutterSocialAppUIKit",
+  }
 ];

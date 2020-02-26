@@ -26,8 +26,10 @@ class _TypeWriteState extends State<TypeWrite> with TickerProviderStateMixin{
     super.initState();
     animate();
   }
+
+  AnimationController controller;
   animate() async{
-    AnimationController controller = AnimationController(
+     controller = AnimationController(
       duration: Duration(seconds: widget.seconds),
       vsync: this,
     );
@@ -38,13 +40,19 @@ class _TypeWriteState extends State<TypeWrite> with TickerProviderStateMixin{
     });
 
     await controller.forward();
-    controller.dispose();
   }
 
   Animation<int> _characterCount;
 
   int _stringIndex;
 
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(

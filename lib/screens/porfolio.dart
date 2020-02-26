@@ -69,34 +69,42 @@ class Portfolio extends StatelessWidget {
                 : MediaQuery.of(context).size.height * 0.5,
             child: CachedNetworkImage(
               imageUrl: work['img'],
-//              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
           );
 
 
-          return Card(
-            child: ExpansionTile(
-              title: Text(
-                "${work['name']}",
-              ),
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: ResponsiveWidget.isSmallScreen(context)
-                      ? Column(
-                    children: <Widget>[
-                      text,
-                      image
-                    ],
-                  )
-                      : Row(
-                    children: <Widget>[
-                      text,
-                      image
-                    ],
-                  ),
+          return Padding(
+            padding: EdgeInsets.symmetric(vertical: 5),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey,
                 ),
-              ],
+              ),
+              child: ExpansionTile(
+                title: Text(
+                  "${work['name']}",
+                ),
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: ResponsiveWidget.isSmallScreen(context)
+                        ? Column(
+                      children: <Widget>[
+                        text,
+                        image
+                      ],
+                    )
+                        : Row(
+                      children: <Widget>[
+                        text,
+                        image
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         },
