@@ -1,5 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/util/config.dart';
+import 'package:portfolio/widgets/mouse_cursor.dart';
 import 'package:portfolio/widgets/myDrawer.dart';
+import 'package:portfolio/widgets/responsive_widget.dart';
+import 'dart:html' as html;
+
 
 class Portfolio extends StatelessWidget {
   @override
@@ -9,27 +15,91 @@ class Portfolio extends StatelessWidget {
         title: Text("Portfolio"),
       ),
       drawer: MyDrawer(1),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: ListView(
-          children: <Widget>[
+      body: ListView.builder(
+        padding: EdgeInsets.fromLTRB(30, 10, 30, 20),
+        itemCount: works.length,
+        itemBuilder: (BuildContext context, int index) {
+          Map work = works[index];
 
-            ExpansionTile(
-              title: Text(
-                "FlutterEbookApp",
-              ),
+          Widget text = Container(
+            width: ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width/2.4,
+
+            height: ResponsiveWidget.isSmallScreen(context)
+                ? null
+                : MediaQuery.of(context).size.height * 0.5,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text("SUmammry"),
-                    
-                    Image.asset("assets/images/me.jpeg")
-                  ],
+                Text(
+                  "${work['info']}",
+                  textScaleFactor: 1,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+
+                SizedBox(height: 20,),
+                MouseCursor(
+                  child: GestureDetector(
+                    onTap: (){
+                      html.window.open(work['link'], work['name']);
+                    },
+                    child: Text(
+                      "View on Github",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontFamily: "PoppinsBold",
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
+          );
+
+          Widget image = Container(
+            width: ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width/2.4,
+            height: ResponsiveWidget.isSmallScreen(context)
+                ? MediaQuery.of(context).size.height * 0.5
+                : MediaQuery.of(context).size.height * 0.5,
+            child: CachedNetworkImage(
+              imageUrl: work['img'],
+//              fit: BoxFit.contain,
+            ),
+          );
+
+
+          return Card(
+            child: ExpansionTile(
+              title: Text(
+                "${work['name']}",
+              ),
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: ResponsiveWidget.isSmallScreen(context)
+                      ? Column(
+                    children: <Widget>[
+                      text,
+                      image
+                    ],
+                  )
+                      : Row(
+                    children: <Widget>[
+                      text,
+                      image
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

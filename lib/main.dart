@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/screens/home.dart';
-import 'package:portfolio/screens/main_screen.dart';
 import 'package:portfolio/util/consts.dart';
 
 void main() => runApp(MyApp());
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: Constants.appName,
       theme: Constants.lightTheme,
-      darkTheme: Constants.darkTheme,
+//      darkTheme: Constants.darkTheme,
       home: Home(),
     );
   }

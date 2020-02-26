@@ -17,7 +17,7 @@ class Constants{
   static Color blueAccent = Color(0xff22a6d8);
 
   static ThemeData lightTheme = ThemeData(
-//    fontFamily: "Noto",
+    fontFamily: "Poppins",
     backgroundColor: lightBG,
     primaryColor: lightPrimary,
     accentColor:  lightAccent,
@@ -36,7 +36,7 @@ class Constants{
   );
 
   static ThemeData darkTheme = ThemeData(
-//    fontFamily: "Noto",
+    fontFamily: "Poppins",
     brightness: Brightness.dark,
     backgroundColor: darkBG,
     primaryColor: darkPrimary,

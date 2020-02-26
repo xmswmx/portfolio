@@ -19,12 +19,6 @@ class MyDrawer extends StatelessWidget {
       "label": "Portfolio",
       "page": Portfolio(),
     },
-    {
-      "label": "Services",
-    },
-    {
-      "label": "Let's talk",
-    }
   ];
 
   List<Widget> navButtons(BuildContext context){

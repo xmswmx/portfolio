@@ -23,6 +23,7 @@ dependencies:
   flutter_icons: ^1.0.0+1
   simple_animations: ^1.3.6
   page_transition: ^1.1.4
+  cached_network_image: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -37,9 +38,11 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Noto
+    - family: Poppins
       fonts:
-        - asset: assets/fonts/NotoSerif-Regular.ttf
-        - asset: assets/fonts/NotoSerif-Italic.ttf
-        - asset: assets/fonts/NotoSerif-Bold.ttf
-        - asset: assets/fonts/NotoSerif-BoldItalic.ttf
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-ExtraLight.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
+    - family: PoppinsBold
+      fonts:
+        - asset: assets/fonts/Poppins-ExtraBold.ttf

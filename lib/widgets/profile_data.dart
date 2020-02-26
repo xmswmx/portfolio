@@ -81,6 +81,7 @@ class _ProfileDataState extends State<ProfileData>{
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
                     fontSize: 45,
+                    fontFamily: "PoppinsBold"
                   ),
                 ),
               ),
@@ -96,6 +97,9 @@ class _ProfileDataState extends State<ProfileData>{
                     "with Node.js for Backend developement.",
                 textScaleFactor: 1.3,
                 seconds: 6,
+                style: TextStyle(
+                  fontWeight: FontWeight.w200
+                ),
               ),
 
               SizedBox(
