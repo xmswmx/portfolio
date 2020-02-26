@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/util/config.dart';
 import 'package:portfolio/widgets/mouse_cursor.dart';
@@ -67,8 +66,8 @@ class Portfolio extends StatelessWidget {
             height: ResponsiveWidget.isSmallScreen(context)
                 ? MediaQuery.of(context).size.height * 0.5
                 : MediaQuery.of(context).size.height * 0.5,
-            child: CachedNetworkImage(
-              imageUrl: work['img'],
+            child: Image.network(
+              work['img'],
               fit: BoxFit.cover,
             ),
           );
@@ -93,10 +92,12 @@ class Portfolio extends StatelessWidget {
                         ? Column(
                       children: <Widget>[
                         text,
-                        image
+                        SizedBox(height: 10,),
+                        image,
                       ],
                     )
                         : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         text,
                         image
