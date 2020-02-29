@@ -49,7 +49,6 @@ class _ProfileDataState extends State<ProfileData>{
     }
   ];
 
-
   @override
   Widget build(BuildContext context) {
 
@@ -74,6 +73,7 @@ class _ProfileDataState extends State<ProfileData>{
                     : MediaQuery.of(context).size.height/4,
               ),
 
+
               FadeSide(
                 delay: 1,
                 child: Text(
@@ -81,7 +81,7 @@ class _ProfileDataState extends State<ProfileData>{
                   style: TextStyle(
                     fontWeight: FontWeight.w900,
                     fontSize: 45,
-                    fontFamily: "PoppinsBold"
+                    fontFamily: "PoppinsBold",
                   ),
                 ),
               ),
